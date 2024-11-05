@@ -39,11 +39,11 @@ export default function Card({
             return(
             <div className='relative'>
                 <div className='flex flex-col gap-4 absolute bottom-[10%] left-[10%] right-[10%] text-white z-10'>
-                    <h2 className=' text-4xl font-bold'>{title}</h2>
-                    <p>{description}</p>
+                    <h2 className=' text-2xl xl:text-4xl font-bold'>{title}</h2>
+                    <p className='text-sm xl:text-lg h-16 xl:h-auto overflow-hidden'>{description}</p>
                 </div>
                     <img src={imageUrl} alt='imagen inicio' className='h-[80svh] w-full object-cover z-0'></img>
-                    <div className='absolute inset-0 bg-transparent shadow-[inset_0px_-300px_100px_-100px_#2d3748] pointer-events-none'></div>
+                    <div className='absolute inset-0 bg-transparent shadow-[inset_0px_-300px_100px_-100px_#2d3748] pointer-events-none z-0'></div>
                 </div>
             )
         case 'events':

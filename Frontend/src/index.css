@@ -6,26 +6,38 @@
     margin: auto;
     font-size: medium;
     text-decoration: none;
-    padding: 5px 5px;
+    padding: 5px 3px;
     border-radius: 30px;
     border: 0px;
 }
-.calendarStyle button{
-    border-radius: 10px;
-    padding: 30px;
-}
 .calendarStyle .react-calendar{
     box-shadow: 0px 0px 5px 0.2px gray;
-    width: 80%;
-}
-.calendarStyle .react-calendar__navigation{
-    min-height: 100px;
-}
-.calendarStyle span{
-    font-size:x-large;
+    width: 100%;
+    
 }
 .calendarStyle .react-calendar__month-view__days{
-    font-size: larger;
+    height: 35dvh;
+}
+@media (min-width: 1280px) {
+    .calendarStyle .react-calendar{
+        width: 80%;
+    }
+    .calendarStyle button{
+        border-radius: 10px;
+        padding: 30px;
+    }
+    
+    .calendarStyle .react-calendar__navigation{
+        min-height: 100px;
+        
+    }
+    .calendarStyle span{
+        font-size:x-large;
+    }
+    .calendarStyle .react-calendar__month-view__days{
+        font-size: larger;
+        height: auto;
+    }
 }
 
 .slick-next{
@@ -34,6 +46,7 @@
     background-color: white;
     background-size: 100%;
     right: -25px;
+    z-index: 40;
 }
 .slick-prev {
     background-position: -1px;
@@ -41,7 +54,8 @@
     background-color: white;
     background-size: 100%;
     left: -25px;
-  }
+    z-index: 40;
+}
 
 .slick-arrow{
     font-size: 0;

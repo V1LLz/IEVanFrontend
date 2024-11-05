@@ -8,7 +8,7 @@ export default function EventAdmin() {
     const [events, setEvents] = useState([
         {
             id: 1,
-            date: '2024-11-02',
+            date: '2024-11-03',
             title: 'Titulo evento 1',
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         },
@@ -27,7 +27,7 @@ export default function EventAdmin() {
     };
 
     const formatDate = (dateString) => {
-        const date = new Date(dateString);
+        const date = new Date(`${dateString}T00:00:00`); // interpretará la fecha en la zona horaria local
         const day = date.getDate();
         const month = date.toLocaleString('default', { month: 'short' }).toUpperCase();
         return { day, month };
@@ -63,8 +63,8 @@ export default function EventAdmin() {
     };
 
     return (
-        <div className="h-full py-10 w-8/12 mx-auto">
-            <h2 className="text-left text-6xl font-bold mb-10">Administrar eventos</h2>
+        <div className="h-full py-10 w-10/12 xl:w-9/12 mx-auto">
+            <h2 className="text-left text-4xl xl:text-6xl font-bold mb-10">Administrar eventos</h2>
             <CustomCalendar />
             <div className="flex justify-between mt-16">
                 <h3 className="text-left text-4xl font-bold mb-10">Eventos</h3>
@@ -93,7 +93,7 @@ export default function EventAdmin() {
             {/* Ventana flotante para crear/editar eventos */}
             {isModalOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-                    <div className="bg-white p-8 rounded-lg shadow-lg w-1/3 relative">
+                    <div className="bg-white p-8 rounded-lg shadow-lg w-10/12  md:w-2/3 xl:w-1/3 relative">
                         <div className="flex justify-between items-center mb-4">
                             <h2 className="text-2xl font-bold">
                                 {currentEvent ? 'Editar Evento' : 'Crear Evento'}
@@ -118,7 +118,7 @@ export default function EventAdmin() {
                                     name="date"
                                     value={formData.date}
                                     onChange={handleChange}
-                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+                                    className=" appearance-none border rounded-xl w-full py-2 px-3 text-gray-700"
                                     required
                                 />
                             </div>
@@ -131,7 +131,7 @@ export default function EventAdmin() {
                                     name="title"
                                     value={formData.title}
                                     onChange={handleChange}
-                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+                                    className=" appearance-none border rounded-xl w-full py-2 px-3 text-gray-700"
                                     required
                                 />
                             </div>
@@ -143,7 +143,7 @@ export default function EventAdmin() {
                                     name="description"
                                     value={formData.description}
                                     onChange={handleChange}
-                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+                                    className=" appearance-none border rounded-xl w-full py-2 px-3 text-gray-700"
                                     required
                                 />
                             </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Escudo from '../static/escudo.webp';
 import { useNavigate } from 'react-router-dom';
+import backgroundImage from '../static/Frente-IERV.webp';
 
 const Login = () => {
   const [correo, setCorreo] = useState('');  // Antes era 'email'
@@ -39,7 +40,7 @@ const Login = () => {
   return (
     <div 
       className="flex items-center justify-center h-screen bg-cover bg-center relative"
-      style={{ backgroundImage: "url('https://scontent.fvvc1-1.fna.fbcdn.net/v/t39.30808-6/283283462_407243468081280_2490055200479528745_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=91Ks89HDzrEQ7kNvgGz3tCh&_nc_zt=23&_nc_ht=scontent.fvvc1-1.fna&_nc_gid=A8SKTI01w6lXA0PlRls9cnP&oh=00_AYC7C_V9_JjjpD1YC51-bkcQIGbnFOeHZHjjJCk4JfdihA&oe=671A5125')" }}
+      style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       <div className="absolute inset-0 bg-black bg-opacity-40 backdrop-blur-sm"></div>
 
@@ -49,7 +50,7 @@ const Login = () => {
       >
         <div className='flex justify-between items-center'>
           <h2 className="text-2xl font-bold mb-4 text-center">Iniciar Sesión</h2>
-          <img className='h-fit w-14' src={Escudo} alt="Escudo" />
+          <img className='h-fit w-14 cursor-pointer' src={Escudo} alt="Escudo" onClick={() => navigate('/')}/>
         </div>
 
         {error && <p className="text-red-500 mb-4">{error}</p>}

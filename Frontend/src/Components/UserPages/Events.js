@@ -8,7 +8,7 @@ import 'react-calendar/dist/Calendar.css';
 class Events extends Component {
     render() {
         return (
-            <div className='h-full py-10 w-8/12 mx-auto'>
+            <div className='h-full py-10 w-10/12 xl:w-9/12  mx-auto'>
                 <h2 className='text-left text-6xl font-bold mb-10'>Eventos</h2>
                 <CustomCalendar />
             </div>

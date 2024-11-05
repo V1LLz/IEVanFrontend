@@ -5,14 +5,14 @@ import { useNavigate } from 'react-router-dom'
 const HeaderButton = ({ hidden, menuItems }) => {
   return (
     <div
-      className={`flex flex-col justify-between min-h-24 absolute top-full left-1/2 transform -translate-x-1/2 min-w-52 bg-white z-50 ${
+      className={`flex flex-col absolute top-full left-1/2 transform -translate-x-1/2 translate-y-[2px] min-w-52 bg-blue-500 text-white z-[2000]  ${
         hidden ? 'invisible' : 'visible'
       }`}
     >
       {menuItems.map((item, index) => (
         <button
           key={index}
-          className='w-full hover:bg-slate-300 flex-grow'
+          className='w-full hover:bg-blue-600 flex-grow py-2'
           onClick={() => item.onClick()}
         >
           {item.label}
@@ -50,24 +50,27 @@ export default function Header({ onOpenUserSideMenu }) {
   // Definir los elementos de menú específicos para cada sección
   const menuItems = {
     institucion: [
-      { label: 'Historia', onClick: () => navigate('/nuestra-institucion/historia') },
-      { label: 'Misión y Visión', onClick: () => navigate('/nuestra-institucion/mision-vision') },
-      { label: 'Símbolos', onClick: () => navigate('/nuestra-institucion/simbolos') },
+      { label: '¿Quienes Somos?', onClick: () => navigate('/nuestra-institucion/quienes-somos?') },
+      { label: 'Misión y Visión', onClick: () => navigate('/nuestra-institucion#mision-vision') },
+      { label: 'Principios y Valores', onClick: () => navigate('/nuestra-institucion#principios-valores') },
+      { label: 'Símbolos Institucionales', onClick: () => navigate('/nuestra-institucion#simbolos-institucionales') },
+      { label: 'Sedes', onClick: () => navigate('/nuestra-institucion/sedes') },
     ],
-    admisiones: [
-      { label: 'Proceso de Admisión', onClick: () => navigate('/admisiones/proceso') },
-      { label: 'Requisitos', onClick: () => navigate('/admisiones/requisitos') },
-      { label: 'Fechas Importantes', onClick: () => navigate('/admisiones/fechas') },
-    ],
+    admisiones: [],
     administrativa: [
-      { label: 'Directiva', onClick: () => navigate('/gestion-administrativa/directiva') },
-      { label: 'Recursos Humanos', onClick: () => navigate('/gestion-administrativa/rrhh') },
-      { label: 'Finanzas', onClick: () => navigate('/gestion-administrativa/finanzas') },
+      { label: 'Transparencia', onClick: () => navigate('/gestion-administrativa/transparencia') },
+      { label: 'Comunicados', onClick: () => navigate('/gestion-administrativa/rrhh') },
+      { label: 'Resoluciones', onClick: () => navigate('/gestion-administrativa/finanzas') },
+      { label: 'Proyectos Pedagógicos Transversales', onClick: () => navigate('/gestion-administrativa/finanzas') },
+      { label: 'SAC SEM Villavicencio', onClick: () => window.location.href = 'https://sac2.gestionsecretariasdeeducacion.gov.co/app_Login/?sec=91' }
     ],
     academica: [
-      { label: 'Programas Académicos', onClick: () => navigate('/gestion-academica/programas') },
-      { label: 'Plan de Estudios', onClick: () => navigate('/gestion-academica/plan-estudios') },
-      { label: 'Evaluación', onClick: () => navigate('/gestion-academica/evaluacion') },
+      { label: 'PEI', onClick: () => navigate('/gestion-academica/documentos-institucionales#pei') },
+      { label: 'Manual de Convivencia', onClick: () => navigate('/gestion-academica/documentos-institucionales#manual-convivencia') },
+      { label: 'Plan de Estudios', onClick: () => navigate('/gestion-academica/documentos-institucionales#planes-estudio') },
+      { label: 'Plataformas Academicas', onClick: () => navigate('/gestion-academica/plataformas-academicas') },
+      { label: 'Biblioteca Virtual IERV', onClick: () => navigate('/gestion-academica/biblioteca-virtual-ierv') },
+
     ],
     comunidad: [
       { label: 'Eventos', onClick: () => navigate('/comunidad-ierv/eventos') },
@@ -76,13 +79,13 @@ export default function Header({ onOpenUserSideMenu }) {
     ],
   };
 
-  const navElements = 'flex px-5 hover:border-b-2 hover:bg-slate-300 border-black items-center relative';
+  const navElements = 'flex px-5 border-b-2 border-white hover:border-b-2 hover:border-blue-600 hover:bg-slate-300 border-black items-center relative';
 
   return (
-    <header className='flex relative justify-between gap-32 bg-white shadow-md shadow-slate-200 px-3 xl:px-10 min-h-20'>
+    <header className='flex relative justify-between gap-32 bg-white shadow-md shadow-slate-200 px-3 xl:px-10 min-h-20 z-40'>
       <section
         className='flex w-1/2 max-h-[80px] items-center hover:cursor-pointer gap-6 xl:gap-2'
-        onClick={() => navigate('/inicio')}
+        onClick={() => navigate('/')}
       >
         <img className="xl:hidden h-1/2" src={MenuIcon} alt='Menu Icon' />
         <img
@@ -94,23 +97,21 @@ export default function Header({ onOpenUserSideMenu }) {
 
       <nav className='invisible xl:visible flex mx-auto hover:cursor-pointer absolute left-1/2 transform -translate-x-1/2 h-full'>
         <ul className='flex'>
-          <li
+        <li
             className={navElements}
-            onMouseEnter={() => handleMouseEnter('institucion')}
-            onMouseLeave={() => handleMouseLeave('institucion')}
-            onClick={() => navigate('/nuestra-institucion')}
-          >
-            Nuestra Institución
-            <HeaderButton hidden={!menuVisibility.institucion} menuItems={menuItems.institucion} />
-          </li>
-          <li
-            className={navElements}
-            onMouseEnter={() => handleMouseEnter('admisiones')}
-            onMouseLeave={() => handleMouseLeave('admisiones')}
             onClick={() => navigate('/admisiones')}
           >
             Admisiones
             <HeaderButton hidden={!menuVisibility.admisiones} menuItems={menuItems.admisiones} />
+          </li>
+          <li
+            className={navElements}
+            onMouseEnter={() => handleMouseEnter('institucion')}
+            onMouseLeave={() => handleMouseLeave('institucion')}
+          >
+            Nuestra Institución
+            <div className='w-full h-full absolute inset-0' onClick={() => navigate('/nuestra-institucion')}></div>
+            <HeaderButton hidden={!menuVisibility.institucion} menuItems={menuItems.institucion} />
           </li>
           <li
             className={navElements}
@@ -125,18 +126,19 @@ export default function Header({ onOpenUserSideMenu }) {
             className={navElements}
             onMouseEnter={() => handleMouseEnter('academica')}
             onMouseLeave={() => handleMouseLeave('academica')}
-            onClick={() => navigate('/gestion-academica')}
+            
           >
             Gestión Académica
+            <div className='w-full h-full absolute inset-0' onClick={() => navigate('/gestion-academica')}></div>
             <HeaderButton hidden={!menuVisibility.academica} menuItems={menuItems.academica} />
           </li>
           <li
             className={navElements}
             onMouseEnter={() => handleMouseEnter('comunidad')}
             onMouseLeave={() => handleMouseLeave('comunidad')}
-            onClick={() => navigate('/comunidad-ierv')}
           >
             Comunidad IERV
+            <div className='w-full h-full absolute inset-0' onClick={() => navigate('/comunidad-ierv')}></div>
             <HeaderButton hidden={!menuVisibility.comunidad} menuItems={menuItems.comunidad} />
           </li>
         </ul>
